@@ -1,549 +1,166 @@
-# 🟦 Lab Microsoft 365 & Microsoft Entra ID
+# ☁️ Laboratoire Microsoft 365 — Administration & Support IT
 
-## 📌 Présentation
+## 📌 Présentation du projet
 
-Ce projet présente la mise en place d'un laboratoire **Microsoft 365 / Microsoft Entra ID** réalisé dans le cadre de ma montée en compétences en **support informatique et administration systèmes & réseaux**.
+Ce projet présente la mise en place d'un environnement **Microsoft 365** dans le cadre de ma reconversion professionnelle vers les métiers du **support informatique et de l'administration systèmes et réseaux**.
 
-L'objectif était de reproduire plusieurs tâches rencontrées dans un environnement professionnel : gestion des utilisateurs, administration des licences, gestion de la messagerie avec Exchange Online, MFA, groupes, rôles administratifs, appareils, accès conditionnel et diagnostic d'incidents.
+L'objectif est de découvrir et de mettre en pratique les principaux services Microsoft 365 utilisés en entreprise, notamment pour la gestion des utilisateurs, des identités, des appareils, de la messagerie, de la sécurité et des espaces collaboratifs.
 
-L'environnement repose sur une entreprise fictive nommée **NovaTech**.
-
-Plusieurs incidents ont également été simulés afin d'appliquer une méthodologie de support :
-
-**Incident → Diagnostic → Analyse des journaux → Identification de la cause → Correction → Validation**
+Le laboratoire repose sur une entreprise fictive nommée **NovaTech**, avec plusieurs utilisateurs, groupes et ressources permettant de reproduire des situations professionnelles.
 
 ---
 
-# 🛠️ Technologies utilisées
+## 🏢 Environnement technique
 
-- Microsoft 365 Admin Center
-- Microsoft Entra ID
-- Exchange Online
-- Microsoft Authenticator
-- Microsoft Entra Conditional Access
-- Windows 11
-- VirtualBox
+- **Organisation :** NovaTech
+- **Plateforme :** Microsoft 365
+- **Système d'exploitation :** Windows 11 Professionnel
+- **Virtualisation :** Oracle VirtualBox
+- **Identités :** Microsoft Entra ID
+- **Gestion des appareils :** Microsoft Intune
+- **Messagerie :** Exchange Online
+- **Collaboration :** Microsoft Teams et SharePoint Online
+- **Stockage cloud :** OneDrive Entreprise
 
----
-
-# 🏢 Environnement NovaTech
-
-Pour reproduire un environnement d'entreprise, plusieurs comptes et ressources ont été créés.
-
-### Utilisateurs
-
-- Mamadou Sacko — Administrateur
-- Sophie Martin — Utilisatrice / compte de test
-- Lucas Bernard — Utilisateur de test
-
-### Ressources
-
-- Boîte aux lettres partagée **Support NovaTech**
-- Groupe de distribution **Équipe Marketing**
-- Groupe de sécurité **Support IT**
-- Groupe dynamique **Support IT - Dynamique**
+Les manipulations sont réalisées dans un environnement de test afin de comprendre les opérations courantes d'un technicien support IT.
 
 ---
 
-# 👤 1. Gestion des utilisateurs Microsoft 365
+## 🛠️ Services Microsoft 365 étudiés
 
-Création et administration de plusieurs utilisateurs depuis le centre d'administration Microsoft 365.
+### 👤 1. Microsoft 365 Admin Center
 
-Manipulations réalisées :
+Administration générale de l'environnement Microsoft 365.
 
-- Création de comptes utilisateurs
-- Modification des informations utilisateur
+**Manipulations réalisées :**
+- Création et gestion des comptes utilisateurs
+- Attribution et retrait de licences
 - Réinitialisation des mots de passe
-- Blocage et déblocage des connexions
-- Suppression d'un utilisateur
-- Gestion des licences
-- Test de connexion avec différents comptes
+- Gestion des services associés aux utilisateurs
+- Simulation de situations d'arrivée et de départ de collaborateurs
 
-Ces manipulations permettent de reproduire les opérations courantes réalisées par un technicien support lors de l'arrivée, de la modification ou du départ d'un collaborateur.
+### 📧 2. Exchange Online
 
-CLiquez ici : [[Pt 1 Présentation de l’environnement Microsoft 365.png]](https://github.com/MamadouSackoIT/microsoft-365-entra-lab/blob/main/Pt%201%20Pr%C3%A9sentation%20de%20l%E2%80%99environnement%20Microsoft%20365.png)
+Administration de la messagerie professionnelle.
 
----
+**Manipulations réalisées :**
+- Gestion des boîtes aux lettres
+- Création de boîtes partagées
+- Gestion des délégations et autorisations
+- Configuration de groupes de distribution
+- Gestion des alias et transferts de courrier
+- Diagnostic d'incidents liés à la messagerie
 
-# 🔑 2. Gestion des licences Microsoft 365
+### 🔐 3. Microsoft Entra ID
 
-Administration des licences depuis le Microsoft 365 Admin Center.
+Gestion des identités et des accès dans l'environnement cloud Microsoft.
 
-J'ai notamment travaillé sur :
-
-- Attribution d'une licence à un utilisateur
-- Retrait d'une licence
-- Vérification des applications et services associés
-- Vérification de la disponibilité des licences
-- Diagnostic d'un utilisateur ne disposant d'aucune licence
-- Vérification de l'accès à Exchange Online après attribution d'une licence
-
-Un incident a notamment été simulé avec **Lucas Bernard**.
-
-Le compte pouvait s'authentifier sur Microsoft 365 mais ne disposait pas de boîte aux lettres Outlook.
-
-Le diagnostic a permis d'identifier :
-
-**Licences : 0**
-
-Après attribution d'une licence contenant **Exchange Online**, la boîte aux lettres de Lucas a été provisionnée et l'accès à Outlook a été validé.
-
-Cliquez ici : https://github.com/MamadouSackoIT/microsoft-365-entra-lab/blob/main/Pt%202%20Gestion%20des%20utilisateurs%20Microsoft%20365.png
-
----
-
-# 📧 3. Administration Exchange Online
-
-Plusieurs fonctionnalités de messagerie Microsoft 365 ont été configurées.
-
-### Boîte aux lettres partagée
-
-Création de la boîte :
-
-**Support NovaTech**
-
-Configuration de droits permettant à un utilisateur autorisé :
-
-- d'accéder à la boîte partagée ;
-- de consulter les messages ;
-- d'envoyer des messages au nom de la boîte.
-
-Les permissions **Full Access** et **Send As** ont été étudiées.
-
-Cliquez ici : https://github.com/MamadouSackoIT/microsoft-365-entra-lab/blob/main/Pt%203%20Gestion%20des%20licences%20Microsoft%20365.png
-
----
-
-## Groupe de distribution
-
-Création du groupe :
-
-**Équipe Marketing**
-
-Objectif : permettre l'envoi d'un message à plusieurs utilisateurs à partir d'une seule adresse.
-
-La réception de messages provenant d'expéditeurs externes a également été testée.
-
----
-
-## Alias de messagerie
-
-Configuration et test d'alias afin de permettre à une boîte aux lettres de recevoir des messages via plusieurs adresses.
-
----
-
-## Transfert de courrier
-
-Simulation du départ d'un collaborateur avec configuration d'un transfert de ses messages vers une autre boîte.
-
-Cette manipulation permet de reproduire une partie d'une procédure d'**offboarding**.
-
----
-
-# ☁️ 4. Administration Microsoft Entra ID
-
-Microsoft Entra ID a été utilisé pour administrer les identités de l'environnement NovaTech.
-
-Manipulations réalisées :
-
-- Gestion des utilisateurs
-- Gestion des groupes
-- Gestion des propriétés utilisateurs
-- Gestion des rôles administratifs
-- Gestion des méthodes d'authentification
+**Manipulations réalisées :**
+- Administration des utilisateurs et groupes
+- Création de groupes de sécurité statiques et dynamiques
+- Attribution de rôles administratifs
+- Application du principe du moindre privilège
+- Configuration de l'authentification multifacteur (MFA)
+- Création de stratégies d'accès conditionnel
 - Consultation des journaux de connexion
-- Gestion des appareils
-- Mise en place de stratégies d'accès conditionnel
+- Gestion et enregistrement des appareils
 
-Cliquez ici : https://github.com/MamadouSackoIT/microsoft-365-entra-lab/blob/main/Pt%204Guide%20Exchange%20Online%20_%20bo%C3%AEtes%20et%20d%C3%A9l%C3%A9gations.png
+### 💻 4. Microsoft Intune
 
----
+Administration et gestion à distance des postes Windows.
 
-# 👥 5. Groupes de sécurité
+**Manipulations réalisées :**
+- Enrôlement d'un poste Windows 11 Pro
+- Vérification de la jonction Microsoft Entra ID
+- Déploiement de stratégies de configuration
+- Restriction de l'accès au Panneau de configuration
+- Création de stratégies de conformité
+- Déploiement d'applications
+- Redémarrage à distance
+- Synchronisation des appareils
 
-## Groupe statique
+### 💬 5. Microsoft Teams
 
-Création du groupe :
+Découverte des fonctionnalités de collaboration et de communication.
 
-**Support IT**
+**Manipulations réalisées :**
+- Création et gestion d'une équipe
+- Configuration de canaux
+- Gestion des membres et des propriétaires
+- Création d'un canal privé
+- Ajout d'un utilisateur externe
+- Vérification des autorisations d'accès
 
-Type :
+### 📁 6. SharePoint Online
 
-**Security / Assigned**
+Administration d'un espace collaboratif et gestion documentaire.
 
-Les utilisateurs sont ajoutés manuellement au groupe.
+**Manipulations réalisées :**
+- Création d'un site d'équipe
+- Organisation de bibliothèques documentaires
+- Gestion des autorisations et de leur héritage
+- Configuration du partage de fichiers
+- Consultation de l'historique des versions
+- Restauration de documents supprimés
+- Configuration du partage externe
 
-Cliquez ici : https://github.com/MamadouSackoIT/microsoft-365-entra-lab/blob/main/Pt%205%20Guide%20d%E2%80%99administration%20Microsoft%20Entra%20ID.png
+### ☁️ 7. OneDrive Entreprise
 
----
+Gestion du stockage cloud et de la synchronisation des fichiers utilisateurs.
 
-## Groupe dynamique
-
-Création du groupe :
-
-**Support IT - Dynamique**
-
-Une règle dynamique a été utilisée afin d'ajouter automatiquement les utilisateurs appartenant au département **Support**.
-
-Exemple de règle :
-
-```text
-(user.department -eq "Support")
-```
-
-Après modification du département de Sophie Martin vers **Support**, son compte a automatiquement rejoint le groupe dynamique.
-
-Cette manipulation permet de comprendre l'automatisation de la gestion des appartenances dans Microsoft Entra ID.
-
----
-
-# 🛡️ 6. Authentification multifacteur — MFA
-
-Configuration et test de l'authentification multifacteur avec **Microsoft Authenticator**.
-
-Manipulations réalisées :
-
-- Configuration de Microsoft Authenticator
-- Validation d'une connexion avec MFA
-- Utilisation du number matching
-- Consultation des méthodes d'authentification
-- Réinitialisation des méthodes MFA
-- Réenregistrement de Microsoft Authenticator
-
-Un scénario de **changement/perte de téléphone** a notamment été simulé.
-
-L'ancienne méthode d'authentification a été supprimée puis Microsoft Authenticator a été enregistré de nouveau.
-
-Cliquez ici : https://github.com/MamadouSackoIT/microsoft-365-entra-lab/blob/main/Pt%206.1%20Guide%20MFA%20Microsoft%20Entra%20_%20configuration%20et%20r%C3%A9initialisation.png
+**Manipulations réalisées :**
+- Configuration de OneDrive professionnel
+- Synchronisation avec Windows 11
+- Test de synchronisation bidirectionnelle
+- Gestion des fichiers à la demande
+- Partage de documents et gestion des permissions
+- Sauvegarde du dossier Bureau
+- Restauration de fichiers supprimés
+- Récupération de versions antérieures
 
 ---
 
-# 👮 7. Rôles administratifs et moindre privilège
+## 🔎 Support informatique et résolution d'incidents
 
-Étude du principe de **Least Privilege / moindre privilège**.
+Plusieurs scénarios ont été simulés pour développer une méthodologie de diagnostic et de résolution des incidents.
 
-Au lieu d'utiliser systématiquement un compte **Global Administrator**, un rôle administratif limité a été attribué à Sophie Martin :
+**Exemples :**
+- Utilisateur ne pouvant plus se connecter à Microsoft 365
+- Absence de boîte aux lettres liée à une licence manquante
+- Réinitialisation d'une méthode MFA
+- Vérification des droits d'accès aux ressources
+- Récupération de fichiers supprimés
+- Analyse des journaux de connexion Microsoft Entra ID
 
-**Helpdesk Administrator**
+**Méthodologie appliquée :**
 
-Ce rôle a ensuite été testé.
-
-Sophie pouvait effectuer certaines opérations de support sur un utilisateur standard comme Lucas Bernard.
-
-Une tentative de réinitialisation du mot de passe du compte Global Administrator a également été effectuée.
-
-L'opération a été refusée en raison du niveau de privilège insuffisant.
-
-Cela permet d'illustrer le principe :
-
-> Un technicien doit disposer uniquement des permissions nécessaires à ses missions.
-
-Cliquez ici : https://github.com/MamadouSackoIT/microsoft-365-entra-lab/blob/main/Pt%207%20Groupes%20Entra%20et%20contr%C3%B4le%20des%20acc%C3%A8s.png
+Identification du problème → Diagnostic → Recherche de la cause → Correction → Vérification → Documentation
 
 ---
 
-# 💻 8. Gestion des appareils Microsoft Entra
+## 🎯 Compétences développées
 
-Un poste Windows 11 appartenant au laboratoire Active Directory NovaTech a été enregistré dans Microsoft Entra ID.
+Ce laboratoire m'a permis de développer mes connaissances dans plusieurs domaines :
 
-Le poste était déjà joint au domaine :
-
-```text
-novatech.local
-```
-
-Le compte professionnel de Sophie Martin a ensuite été ajouté au poste.
-
-Dans Microsoft Entra, l'appareil est apparu avec le type :
-
-**Microsoft Entra Registered**
-
-Cette manipulation a permis d'étudier les différences entre :
-
-- Microsoft Entra Registered
-- Microsoft Entra Joined
-- Microsoft Entra Hybrid Joined
-
-Elle permet également de comprendre la différence entre un environnement **Active Directory local** et un environnement d'identité **cloud Microsoft Entra ID**.
-
-Cliquez ici : https://github.com/MamadouSackoIT/microsoft-365-entra-lab/blob/main/8%20Moindre%20privil%C3%A8ge%20dans%20Entra%20ID.png et https://github.com/MamadouSackoIT/microsoft-365-entra-lab/blob/main/8.1%20R%C3%A9initialisation%20du%20mot%20de%20passe%20dans%20Entra.png
+- **Administration Microsoft 365 :** utilisateurs, licences et services cloud
+- **Gestion des identités :** Microsoft Entra ID, groupes et rôles
+- **Sécurité :** MFA, accès conditionnel et contrôle des permissions
+- **Gestion des postes :** Microsoft Intune, conformité et déploiement d'applications
+- **Messagerie :** Exchange Online et gestion des boîtes aux lettres
+- **Collaboration :** Teams et SharePoint Online
+- **Stockage :** OneDrive Entreprise et récupération de données
+- **Support IT :** diagnostic, résolution d'incidents et documentation technique
 
 ---
 
-# 🔐 9. Conditional Access
+## 🚀 Objectif professionnel
 
-Plusieurs stratégies d'accès conditionnel ont été créées afin de comprendre comment Microsoft Entra peut adapter les exigences d'authentification selon le contexte de connexion.
+Ce projet s'inscrit dans mon apprentissage des métiers de **Technicien Support IT** et de **Technicien Systèmes et Réseaux**.
 
-Pour éviter de perturber le laboratoire, les stratégies ont principalement été utilisées en :
+Il complète mes autres laboratoires pratiques consacrés à **Windows Server, Active Directory, GLPI et aux réseaux informatiques**.
 
-**Report-only / Rapport uniquement**
-
-Cela permet d'observer ce qu'aurait fait une stratégie sans réellement bloquer l'utilisateur.
+L'objectif est de consolider mes compétences techniques et de mieux comprendre l'administration d'un environnement informatique professionnel intégrant des services cloud Microsoft.
 
 ---
 
-## Politique MFA
-
-Création d'une stratégie ciblant Sophie Martin avec :
-
-- Utilisateur : Sophie Martin
-- Ressource : Office 365
-- Contrôle d'accès : MFA
-
-Les résultats ont ensuite été vérifiés dans les journaux de connexion.
-
----
-
-## MFA selon la plateforme
-
-Une deuxième stratégie a été utilisée afin d'étudier l'application du MFA selon la plateforme de l'appareil.
-
-Exemple :
-
-**Windows → MFA**
-
-La stratégie a ensuite été observée dans les journaux en mode **Report-only**.
-
-Cliquez ici : https://github.com/MamadouSackoIT/microsoft-365-entra-lab/blob/main/9%20Gestion%20des%20appareils%20Microsoft%20Entra%20expliqu%C3%A9e.png
-
----
-
-# 🌐 10. Conditional Access selon l'emplacement réseau
-
-Création d'un **Named Location / Emplacement nommé** :
-
-```text
-LAB - Réseau NovaTech
-```
-
-L'adresse IP publique utilisée par le laboratoire a été ajoutée à cet emplacement.
-
-L'objectif était de distinguer :
-
-**Connexion depuis le réseau NovaTech**
-
-et
-
-**Connexion depuis un autre réseau**
-
-Une stratégie a ensuite été créée selon la logique :
-
-```text
-Utilisateur : Sophie Martin
-        ↓
-Ressource : Office 365
-        ↓
-Depuis n'importe quel emplacement
-        ↓
-SAUF : LAB - Réseau NovaTech
-        ↓
-Exiger MFA
-```
-
----
-
-## Test avec différentes adresses IP
-
-Une connexion depuis le réseau initial a été observée avec l'adresse publique :
-
-```text
-86.252.222.214
-```
-
-Une autre connexion a ensuite été réalisée depuis un réseau disposant d'une autre adresse publique :
-
-```text
-78.242.54.32
-```
-
-Les journaux Microsoft Entra ont permis de vérifier quelle stratégie Conditional Access aurait été appliquée.
-
-Cette manipulation m'a également permis de faire le lien entre :
-
-- adressage IP privé ;
-- NAT ;
-- adresse IP publique ;
-- identification d'un réseau dans Microsoft Entra.
-
----
-
-# 📊 11. Journaux de connexion Microsoft Entra
-
-Les journaux de connexion ont été utilisés comme outil de diagnostic.
-
-Informations analysées :
-
-- Utilisateur
-- Date et heure
-- Application
-- Adresse IP
-- Emplacement
-- Statut de connexion
-- Exigence d'authentification
-- Code d'erreur
-- Accès conditionnel
-- Informations sur l'appareil
-
-Ils ont notamment permis de vérifier les stratégies Conditional Access en mode **Report-only**.
-
----
-
-# 🧰 12. Résolution d'incidents
-
-Plusieurs incidents ont été reproduits afin de travailler une méthodologie de troubleshooting.
-
-## Incident 1 — Impossible de se connecter
-
-### Symptôme
-
-Lucas Bernard ne parvient plus à se connecter à Microsoft 365.
-
-### Diagnostic
-
-Consultation des journaux de connexion Microsoft Entra.
-
-Plusieurs tentatives apparaissent en échec avec le code :
-
-```text
-50126
-```
-
-Microsoft Entra indique :
-
-```text
-Error validating credentials due to invalid username or password.
-```
-
-### Cause
-
-Identifiants incorrects.
-
-### Résolution
-
-Réinitialisation du mot de passe de Lucas avec un compte disposant des privilèges Helpdesk appropriés.
-
-### Validation
-
-Nouvelle connexion avec Lucas :
-
-**Connexion réussie.**
-
----
-
-# 🧰 13. Incident Exchange Online
-
-## Symptôme
-
-Lucas peut se connecter à Microsoft 365 mais ne dispose pas de sa messagerie Outlook.
-
-## Diagnostic
-
-Vérification du compte depuis :
-
-**Microsoft 365 Admin Center → Utilisateurs actifs → Lucas Bernard → Licences et applications**
-
-Résultat :
-
-```text
-Licences : 0
-Applications : 0
-```
-
-## Cause
-
-Aucune licence permettant d'utiliser Exchange Online n'était attribuée à Lucas.
-
-## Résolution
-
-Attribution d'une licence Microsoft 365 comprenant Exchange Online.
-
-## Validation
-
-Connexion à Outlook avec Lucas Bernard.
-
-La boîte aux lettres est accessible.
-
-**Incident résolu.**
-
----
-
-# 🔄 14. Méthodologie de troubleshooting
-
-Les différents exercices m'ont permis d'appliquer une méthodologie structurée :
-
-```text
-1. Identifier le symptôme
-        ↓
-2. Reproduire le problème
-        ↓
-3. Consulter les journaux
-        ↓
-4. Identifier la cause
-        ↓
-5. Appliquer une correction
-        ↓
-6. Tester avec l'utilisateur
-        ↓
-7. Valider la résolution
-```
-
-L'objectif est d'éviter d'appliquer directement une correction sans avoir identifié la cause de l'incident.
-
----
-
-# 🧠 Compétences travaillées
-
-Ce laboratoire m'a permis de travailler les compétences suivantes :
-
-### Microsoft 365
-
-- Administration des utilisateurs
-- Gestion des licences
-- Administration des services Microsoft 365
-- Onboarding / Offboarding
-
-### Exchange Online
-
-- Boîtes aux lettres utilisateurs
-- Boîtes partagées
-- Alias
-- Groupes de distribution
-- Délégations
-- Transfert de courrier
-
-### Microsoft Entra ID
-
-- Utilisateurs et groupes
-- Groupes statiques et dynamiques
-- Rôles administratifs
-- RBAC
-- Principe du moindre privilège
-- Gestion des appareils
-
-### Sécurité
-
-- MFA
-- Microsoft Authenticator
-- Conditional Access
-- Named Locations
-- Analyse des connexions
-- Analyse des adresses IP
-
-### Support / Troubleshooting
-
-- Analyse des journaux
-- Codes d'erreur Entra
-- Diagnostic d'authentification
-- Diagnostic Exchange Online
-- Réinitialisation de mots de passe
-- Résolution et validation d'incidents
-
----
-
-# 🚀 Conclusion
-
-Ce laboratoire m'a permis de découvrir l'administration d'un environnement **Microsoft 365 / Microsoft Entra ID** en reproduisant des opérations courantes d'un service informatique.
-
-Au-delà de la configuration des services, une attention particulière a été portée au **diagnostic des incidents**, à l'analyse des journaux et à l'application du **principe du moindre privilège**.
-
-Ce projet complète mes autres laboratoires orientés **Active Directory, Windows Server, GLPI, réseau et support informatique**, avec une approche davantage orientée vers l'administration des services Microsoft Cloud.
+*Laboratoire réalisé à des fins pédagogiques dans un environnement Microsoft 365 de test.*
